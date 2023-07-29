@@ -213,7 +213,7 @@ export class PodmanClient extends Client {
   ): Promise<string> {
     const args = ["logs"];
     if (since && since > 0) args.push(...["--since", `${since}s`]);
-    args.push(`${podName}_pod-${podName}`);
+    args.push(`${podName}-${podName}`);
 
     const result = await this.runCommand(args, { scoped: false });
     return result.stdout;
@@ -238,7 +238,7 @@ export class PodmanClient extends Client {
   }
 
   async getPortMapping(port: number, podName: string): Promise<number> {
-    const args = ["inspect", `${podName}_pod-${podName}`, "--format", "json"];
+    const args = ["inspect", `${podName}-${podName}`, "--format", "json"];
     const result = await this.runCommand(args, { scoped: false });
     const resultJson = JSON.parse(result.stdout);
     const hostPort =
@@ -247,7 +247,7 @@ export class PodmanClient extends Client {
   }
 
   async getNodeIP(podName: string): Promise<string> {
-    const args = ["inspect", `${podName}_pod-${podName}`, "--format", "json"];
+    const args = ["inspect", `${podName}-${podName}`, "--format", "json"];
     const result = await this.runCommand(args, { scoped: false });
     const resultJson = JSON.parse(result.stdout);
     const podIp =
@@ -313,7 +313,7 @@ export class PodmanClient extends Client {
     try {
       const scriptFileName = path.basename(scriptPath);
       const scriptPathInPod = `/tmp/${scriptFileName}`;
-      const identifier = `${podName}_pod-${podName}`;
+      const identifier = `${podName}-${podName}`;
 
       // upload the script
       await this.runCommand([

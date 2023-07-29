@@ -338,7 +338,7 @@ export class Network {
 
     switch (this.client.providerName) {
       case "podman":
-        logCommand = `podman logs -f ${node.name}_pod-${node.name}`;
+        logCommand = `podman logs -f ${node.name}-${node.name}`;
         break;
       case "kubernetes":
         logCommand = `kubectl logs -f ${node.name} -c ${node.name} -n ${this.client.namespace}`;
