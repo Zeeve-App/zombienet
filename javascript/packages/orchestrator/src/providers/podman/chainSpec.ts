@@ -113,7 +113,7 @@ export async function getChainSpecRaw(
     try {
       const result = await client.runCommand([
         "exec",
-        `${podName}_pod-${podName}`,
+        `${podName}-${podName}`,
         "cat",
         remoteChainSpecRawFullPath,
       ]);
