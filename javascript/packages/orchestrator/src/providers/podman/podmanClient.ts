@@ -490,7 +490,7 @@ export class PodmanClient extends Client {
       if (allowDegraded && resultJson[0].Status === "Degraded") return;
 
       await new Promise((resolve) => setTimeout(resolve, 3000));
-      t -= 3;
+      t -= 2;
     } while (t > 0);
 
     throw new Error(`Timeout(${this.timeout}) for pod : ${podName}`);

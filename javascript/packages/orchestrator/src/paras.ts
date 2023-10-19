@@ -293,7 +293,7 @@ export async function generateParachainFiles(
         NODE_CONTAINER_WAIT_LOG,
       );
     }
-
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     if (parachain.genesisStateGenerator) {
       await client.copyFileFromPod(
         podDef.metadata.name,
